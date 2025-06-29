@@ -20,7 +20,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const registerUserInBackend = async (user) => {
-    await axios.post("https://backmeup-backend-upload.onrender.com/api/register-user", {
+    await axios.post("https://backmeup-backend-upload-2.onrender.com/api/register-user", {
       uid: user.uid,
       name: user.displayName || "Anonymous",
       email: user.email,

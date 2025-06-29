@@ -18,18 +18,18 @@ export default function Circle() {
 
       try {
         const { data: curUser } = await axios.get(
-          `https://backmeup-backend-upload.onrender.com/api/user/${user.uid}`
+          `https://https://backmeup-backend-upload-2.onrender.com/api/user/${user.uid}`
         );
         const { data: myLogsData } = await axios.get(
-          `https://backmeup-backend-upload.onrender.com/api/logs/${user.uid}`
+          `https://https://backmeup-backend-upload-2.onrender.com/api/logs/${user.uid}`
         );
         setMyLogs(myLogsData);
 
         const partnerData = await Promise.all(
           (curUser.matchedWith || []).map(async (uid) => {
             const [uRes, lRes] = await Promise.all([
-              axios.get(`https://backmeup-backend-upload.onrender.com/api/user/${uid}`),
-              axios.get(`https://backmeup-backend-upload.onrender.com/api/logs/${uid}`)
+              axios.get(`https://backmeup-backend-upload-2.onrender.com/api/user/${uid}`),
+              axios.get(`https://backmeup-backend-upload-2.onrender.com/api/logs/${uid}`)
             ]);
             return {
               name: uRes.data.name,
@@ -52,7 +52,7 @@ export default function Circle() {
   /* ───────────────────────── REACTIONS ───────────────────────── */
   const handleReaction = async (logId, emoji) => {
     try {
-      await axios.post("https://backmeup-backend-upload.onrender.com/api/react", {
+      await axios.post("https://backmeup-backend-upload-2.onrender.com/api/react", {
         logId,
         uid: userUid,
         emoji
@@ -60,7 +60,7 @@ export default function Circle() {
 
       // refresh my logs
       const { data: updatedMyLogs } = await axios.get(
-        `https://backmeup-backend-upload.onrender.com/api/logs/${userUid}`
+        `https://backmeup-backend-upload-2.onrender.com/api/logs/${userUid}`
       );
       setMyLogs(updatedMyLogs);
 
@@ -68,7 +68,7 @@ export default function Circle() {
       const refreshed = await Promise.all(
         partners.map(async (p) => {
           const { data: updatedLogs } = await axios.get(
-            `https://backmeup-backend-upload.onrender.com/api/logs/${p.uid}`
+            `https://backmeup-backend-upload-2.onrender.com/api/logs/${p.uid}`
           );
           return { ...p, logs: updatedLogs };
         })
