@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { auth } from "../firebase";
 import { toast } from "react-toastify";
-import robotAnimation from "../assets/ai.json";
-import { Player } from "@lottiefiles/react-lottie-player";
-
 
 const BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
@@ -52,22 +49,10 @@ export default function DailyInsight() {
           <p className="text-center text-red-500">{error}</p>
         ) : (
           <>
-            <div className="bg-purple-50 border border-purple-200 p-5 rounded-lg flex items-start justify-between gap-4 flex-wrap">
-              <div className="flex-1 min-w-[200px]">
-                <h2 className="text-lg font-semibold text-purple-800 mb-2">🔍 Summary:</h2>
-                <pre className="whitespace-pre-wrap text-gray-800 font-mono">{summary}</pre>
-              </div>
-
-              <div className="w-[150px] sm:w-[200px]">
-                <Player
-                  autoplay
-                  loop
-                  src={robotAnimation}
-                  className="w-full h-auto"
-                />
-              </div>
+            <div className="bg-purple-50 border border-purple-200 p-5 rounded-lg overflow-auto">
+              <h2 className="text-lg font-semibold text-purple-800 mb-2">🔍 Summary:</h2>
+              <pre className="whitespace-pre-wrap text-gray-800 font-mono">{summary}</pre>
             </div>
-
 
             <div className="bg-green-50 border-l-4 border-green-500 p-5 rounded-lg shadow">
               <h2 className="text-lg font-semibold text-green-700 mb-2">🧠 AI Suggestion for Tomorrow:</h2>
